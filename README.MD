@@ -13,6 +13,8 @@ This Ansible playbook automates the installation of FreePBX 17 on a clean Debian
 
 2. Edit configuration files:
 
+    - Rename `inventory/servers.example` to `inventory/servers`
+    - Adjust your username and server ip in `inventory/servers`
     - Check the version of Asterisk (https://downloads.asterisk.org/pub/telephony/asterisk/)
     - Adjust the Asterisk and FreePBX versions in `playbooks/Debian-FreePBX17/vars/versions.yml`:
 
@@ -21,7 +23,7 @@ This Ansible playbook automates the installation of FreePBX 17 on a clean Debian
         freepbx_version: "17.0"
         ```
 
- 3. - If you need a complete installation of FreePBX, not just the necessary modules, you should uncomment the task `Install FreePBX modules` and comment out the task `Download and install extra FreePBX modules` in `playbooks/Debian-FreePBX17/roles/install-freepbx-ui/tasks/main.yml`
+     - If you need a complete installation of FreePBX, not just the necessary modules, you should uncomment the task `Install FreePBX modules` and comment out the task `Download and install extra FreePBX modules` in `playbooks/Debian-FreePBX17/roles/install-freepbx-ui/tasks/main.yml`
 
  4. Run the playbook:
 
@@ -31,7 +33,8 @@ This Ansible playbook automates the installation of FreePBX 17 on a clean Debian
 
 ## Configuration Files
 
-### `vars/versions.yml`
+#### `vars/versions.yml`
+#### `inventory/servers`
 
 ## License
 
