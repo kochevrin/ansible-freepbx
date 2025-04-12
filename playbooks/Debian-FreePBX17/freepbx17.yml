@@ -5,8 +5,8 @@
   become_user: root
   vars_files:
       - ./vars/versions.yml
-      - ./vars/user_info.yml
   roles:
+      - preconfig
       - set-dns
       - package-install
       - asterisk-install
@@ -15,5 +15,3 @@
       - configure-odbc
       - install-freepbx-ui
       - add-service
-      - add-sshkey-github
-      - configure-git

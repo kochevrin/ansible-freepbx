@@ -7,28 +7,23 @@ This Ansible playbook automates the installation of FreePBX 17 on a clean Debian
 1. Clone the repository:
 
     ```bash
-    git clone https://github.com/jfinstrom/ansible-freepbx.git
+    git clone https://github.com/kochevrin/ansible-freepbx.git
     cd ansible-freepbx
     ```
 
 2. Edit configuration files:
 
-    - Adjust the Asterisk version in `playbooks/Debian-FreePBX17/vars/versions.yml`:
+    - Check the version of Asterisk (https://downloads.asterisk.org/pub/telephony/asterisk/)
+    - Adjust the Asterisk and FreePBX versions in `playbooks/Debian-FreePBX17/vars/versions.yml`:
 
         ```yaml
-        asterisk_version: 20.5.0
+        asterisk_version: 21.8.0
+        freepbx_version: "17.0"
         ```
 
-    - Copy and edit the user information in `playbooks/Debian-FreePBX17/vars/user_info.yml`:
+ 3. - If you need a complete installation of FreePBX, not just the necessary modules, you should uncomment the task `Install FreePBX modules` and comment out the task `Download and install extra FreePBX modules` in `playbooks/Debian-FreePBX17/roles/install-freepbx-ui/tasks/main.yml`
 
-        ```yaml
-        developer: true
-        github_username: "your-github-username"
-        git_user_name: "Your Full Name"
-        git_user_email: "your.email@example.com"
-        ```
-
-3. Run the playbook:
+ 4. Run the playbook:
 
     ```bash
     ansible-playbook playbooks/Debian-FreePBX17/freepbx17.yml -i inventory/servers --ask-pass
@@ -37,19 +32,6 @@ This Ansible playbook automates the installation of FreePBX 17 on a clean Debian
 ## Configuration Files
 
 ### `vars/versions.yml`
-
-This file contains the version information for Asterisk. Adjust the `asterisk_version` variable as needed.
-
-### `vars/user_info.yml`
-
-Copy this file from `vars/user_info.yml.sample` and provide the required information:
-
-```yaml
-developer: true
-github_username: "your-github-username"
-git_user_name: "Your Full Name"
-git_user_email: "your.email@example.com"
-```
 
 ## License
 

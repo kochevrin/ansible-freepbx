@@ -4,14 +4,25 @@
     path: /usr/local/src
     state: directory
 
+# - name: Download FreePBX tarball
+#   get_url:
+#     url: http://mirror.freepbx.org/modules/packages/freepbx/freepbx-17.0-latest.tgz
+#     dest: /usr/src/freepbx-17.0-latest.tgz
+
+# - name: Extract FreePBX tarball
+#   unarchive:
+#     src: /usr/src/freepbx-17.0-latest.tgz
+#     dest: /usr/src
+#     remote_src: yes
+
 - name: Download FreePBX tarball
   get_url:
-    url: http://mirror.freepbx.org/modules/packages/freepbx/freepbx-17.0-latest-EDGE.tgz
-    dest: /usr/src/freepbx-17.0-latest-EDGE.tgz
+    url: "http://mirror.freepbx.org/modules/packages/freepbx/freepbx-{{ freepbx_version }}-latest.tgz"
+    dest: "/usr/src/freepbx-{{ freepbx_version }}-latest.tgz"
 
 - name: Extract FreePBX tarball
   unarchive:
-    src: /usr/src/freepbx-17.0-latest-EDGE.tgz
+    src: "/usr/src/freepbx-{{ freepbx_version }}-latest.tgz"
     dest: /usr/src
     remote_src: yes
 
@@ -47,10 +58,26 @@
     msg: "Installation failed"
   when: fwconsole_result.rc != 0
 
-- name: Install FreePBX modules
-  command: fwconsole ma installall
+# - name: Install FreePBX modules
+#   # command: fwconsole ma installall
+#   args:
+#     chdir: /usr/src/freepbx/
+
+- name: Download and install extra FreePBX modules
+  command: fwconsole ma downloadinstall {{ item }}
   args:
     chdir: /usr/src/freepbx/
+  loop:
+    - bulkhandler
+    - ivr
+    - calendar
+    - cel
+    - timeconditions
+    - queues
+    - blacklist
+    - announcement
+    - miscdests
+    - findmefollow
 
 - name: Reload FreePBX
   command: fwconsole reload

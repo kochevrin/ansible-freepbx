@@ -9,9 +9,11 @@
   register: asterisk_installed
 
 - name: Check if Asterisk version matches
-  shell: asterisk -V | grep -oP 'Asterisk \K[0-9]+\.[0-9]+\.[0-9]+'
+  shell: echo "/usr/src/asterisk-{{ asterisk_version }}" | awk -F'-' '{print $NF}'
+  # shell: find /usr/src -maxdepth 1 -type d -name 'asterisk-*' | awk -F'asterisk-' '{print $2}'
   register: current_asterisk_version
   changed_when: false
+  when: asterisk_installed.stat.exists
 
 - name: Download Asterisk source tarball if not installed
   get_url:
