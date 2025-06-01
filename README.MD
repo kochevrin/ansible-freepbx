@@ -31,6 +31,13 @@ This Ansible playbook automates the installation of FreePBX 17 on a clean Debian
     ansible-playbook playbooks/Debian-FreePBX17/freepbx17.yml -i inventory/servers --ask-pass
     ```
 
+## Documentation
+
+Detailed documentation is available in the `docs/` directory:
+
+- [Main Documentation](docs/freepbx.md)
+- Images and additional resources are located in `docs/images/`
+
 ## Configuration Files
 
 #### `vars/versions.yml`
