@@ -1,0 +1,7 @@
+---
+# Simple installation of FOP2 using the official installer
+
+# Placeholder for the configure-queue-log role
+- name: Placeholder task for configure-queue-log
+  debug:
+    msg: "This is a placeholder for configure-queue-log."

@@ -1,0 +1,7 @@
+---
+# Simple installation of FOP2 using the official installer
+
+# Placeholder for the install-fop2 role
+- name: Placeholder task for install-fop2
+  debug:
+    msg: "This is a placeholder for install-fop2."

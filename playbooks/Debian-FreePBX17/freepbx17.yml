@@ -15,3 +15,7 @@
       - configure-odbc
       - install-freepbx-ui
       - add-service
+      # - role: configure-queue-log
+      #   tags: queue-log
+      # - role: install-fop2
+      #   tags: fop2
